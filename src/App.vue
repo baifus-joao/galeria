@@ -1,23 +1,21 @@
 <template>
   <div id="app">
-    <!-- Botão para abrir a barra lateral e título -->
     <div class="header">
       <button class="sidebar-toggle-button" @click="toggleSidebar">☰</button>
       <h1 class="gallery-title">Galeria de Imagens</h1>
     </div>
 
-    <!-- Barra lateral -->
     <div :class="['sidebar', { open: isSidebarOpen }]">
       <button class="add-image-button" @click="toggleImageForm">Adicionar Imagem</button>
       <button class="add-category-button" @click="toggleCategoryForm">Adicionar Categoria</button>
 
-      <!-- Formulário de adição de categoria na barra lateral -->
+
       <form v-if="showCategoryForm" @submit.prevent="addCategory" class="category-form">
         <input v-model="newCategory" type="text" placeholder="Nova Categoria" class="form-input" required />
         <button type="submit" class="submit-button">Adicionar Categoria</button>
       </form>
 
-      <!-- Formulário de adição de imagem na barra lateral -->
+
       <form v-if="showImageForm" @submit.prevent="addImage" class="image-form">
         <input v-model="imageUrl" type="text" placeholder="URL da Imagem" class="form-input" required />
         <input v-model="imageTitle" type="text" placeholder="Título da Imagem" class="form-input" required />
@@ -32,13 +30,11 @@
       </form>
     </div>
 
-    <!-- Conteúdo principal da página -->
     <div class="container">
       <div class="search-bar-container">
         <input v-model="searchQuery" type="text" placeholder="Pesquisar..." class="search-bar" />
       </div>
 
-      <!-- Exibição dos cards -->
       <div class="filterable_cards">
         <div v-for="card in filteredCards" :key="card.id" class="card">
           <img :src="card.image" :alt="card.title" @click="expandImage(card.image)" class="clickable-image" />
@@ -50,7 +46,7 @@
         </div>
       </div>
 
-      <!-- Modal para visualização de imagem expandida -->
+
       <div v-if="expandedImage" class="image-modal" @click.self="closeImage">
         <img :src="expandedImage" class="expanded-img" />
         <button class="nav-arrow left-arrow" @click="previousImage">&#60;</button>
@@ -58,7 +54,7 @@
         <button class="close-btn" @click="closeImage">X</button>
       </div>
 
-      <!-- Botão de voltar ao topo -->
+
       <button class="scroll-to-top" v-if="showScrollToTop" @click="scrollToTop">Voltar ao Topo</button>
     </div>
   </div>

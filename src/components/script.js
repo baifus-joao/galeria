@@ -19,7 +19,7 @@ export default {
       newCategory: '',
       isSidebarOpen: false,
       showImageForm: false,
-      showCategoryForm: false, // Controle do formulário de nova categoria
+      showCategoryForm: false, 
     };
   },
   computed: {
@@ -69,14 +69,14 @@ export default {
       this.cards.push(newCard);
       this.saveImages();
       this.resetForm();
-      this.showImageForm = false; // Fecha o formulário após adicionar a imagem
+      this.showImageForm = false; 
     },
     addCategory() {
       if (this.newCategory && !this.filters.includes(this.newCategory.toLowerCase())) {
         this.filters.push(this.newCategory.toLowerCase());
         this.newCategory = '';
-        this.saveCategories(); // Salva as categorias no localStorage
-        this.showCategoryForm = false; // Fecha o formulário após adicionar a categoria
+        this.saveCategories(); 
+        this.showCategoryForm = false; 
       }
     },
     saveImages() {
@@ -95,7 +95,7 @@ export default {
         { id: 5, title: 'Celular', text: 'iPhone', image: 'images/phone-2.jpg' },
         { id: 6, title: 'Sapatos', text: 'Prato delicioso', image: 'images/shoe-2.jpg' },
         { id: 7, title: 'Sapatos', text: 'Prato delicioso', image: 'images/shoe-1.jpg' },
-        // Continue com os cards estáticos aqui...
+     
       ]);
       this.cards = [...staticCards, ...savedCards];
     },
@@ -115,24 +115,22 @@ export default {
       this.imageText = '';
       this.imageCategory = '';
     },
-    // Controla a abertura/fechamento da barra lateral
+  
     toggleSidebar() {
       this.isSidebarOpen = !this.isSidebarOpen;
-      this.showImageForm = false; // Fecha o formulário ao abrir/fechar a barra lateral
-      this.showCategoryForm = false; // Fecha o formulário de categoria ao abrir/fechar a barra lateral
+      this.showImageForm = false; 
+      this.showCategoryForm = false; 
     },
-    // Controla a exibição do formulário de adição de imagem
     toggleImageForm() {
       this.showImageForm = !this.showImageForm;
     },
-    // Controla a exibição do formulário de adição de categoria
     toggleCategoryForm() {
       this.showCategoryForm = !this.showCategoryForm;
     },
   },
   mounted() {
     this.loadImages();
-    this.loadCategories(); // Carrega categorias salvas
+    this.loadCategories();
     window.addEventListener('scroll', this.handleScroll);
   },
   unmounted() {
